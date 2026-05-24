@@ -1,0 +1,864 @@
+if not game:IsLoaded() then game.Loaded:Wait() end
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local UserInputService = game:GetService("UserInputService")
+
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
+-- Custom Theme Blood Red
+WindUI:AddTheme({
+	Name = "Blood Red",
+	Accent = WindUI:Gradient({
+	["0"]   = { Color = Color3.fromRGB(90, 0, 0), Transparency = 0 },
+	["100"] = { Color = Color3.fromRGB(255, 0, 0), Transparency = 0 },
+	}, { Rotation = 45 }),
+	Outline = Color3.fromRGB(255, 0, 0),
+	Text = Color3.fromRGB(255, 255, 255),
+	Placeholder = Color3.fromRGB(140, 140, 140),
+	Button = WindUI:Gradient({
+	["0"]   = { Color = Color3.fromRGB(150, 0, 0), Transparency = 0 },
+	["100"] = { Color = Color3.fromRGB(60, 0, 0), Transparency = 0 },
+	}, { Rotation = 45 }),
+	Icon = Color3.fromRGB(255, 60, 60),
+	Background = Color3.fromRGB(8, 8, 8),
+})
+
+-- Main Window
+local Window = WindUI:CreateWindow({
+	Title = '<font color="rgb(255,0,0)">SILENT</font> <font color="rgb(255,80,80)">EXPLOITS</font>',
+	Author = "BY SILENT OFFICIALS",
+	Icon = "rbxassetid://84945967838680",
+	IconSize = 32,
+	Folder = "HAMA YAPING",
+	Size = UDim2.fromOffset(700, 400),
+	Theme = "Blood Red",
+	Transparent = true,
+	Acrylic = true,
+	SideBarWidth = 180,
+	HasOutline = true,
+	HideSearchBar = false,
+	User = {
+	Enabled = false,
+	Anonymous = true
+	},
+	KeySystem = {
+		Key = { "SILENT-FREE12KGH" },
+	Note = "Key",
+	Thumbnail = {
+			Image = "rbxassetid://84945967838680"
+	},
+	URL = "https://discord.gg/6K6uaGhvv",
+	SaveKey = true,
+	Callback = function()
+			WindUI:Notify({
+				Title = "SILENT | HUB",
+				Content = "Key Valid",
+				Duration = 15
+			})
+		end
+	},
+}) -- cuma 1 kali tutup disini
+
+-- Sisa script lu dari FPS Tag ke bawah gak usah diubah
+local RunService = game:GetService("RunService")
+local fps = 0
+local frames = 0
+local lastTime = tick()
+
+local fpsTag = Window:Tag({ 
+	Title = "FPS: 0", 
+	Color = Color3.fromRGB(0, 255, 100) 
+})
+
+RunService.Heartbeat:Connect(function()
+	frames += 1
+	if tick() - lastTime >= 1 then
+		fps = frames
+	frames = 0
+		lastTime = tick()
+		
+		fpsTag:SetTitle("FPS: "..fps)
+		
+		if fps >= 60 then
+			fpsTag:SetColor(Color3.fromRGB(0, 255, 100))
+		elseif fps >= 30 then
+			fpsTag:SetColor(Color3.fromRGB(255, 255, 0))
+		else
+			fpsTag:SetColor(Color3.fromRGB(255, 0, 0))
+		end
+	end
+end)
+Window:Tag({
+    Title = "👤 USERNAME: " .. LocalPlayer.Name,
+    Color = Color3.fromRGB(255,0,0)
+})
+Window:Tag({ Title = "🕷️FREE", Color = Color3.fromRGB(255,0,0) })
+Window:Tag({ Title = "🟢WORKING", Color = Color3.fromRGB(0,255,100) })
+Window:Tag({ Title = "🚀SUPPORT FOR EXECUTORS", Color = Color3.fromRGB(255,255,0) })
+
+-- ================= INFO =================
+local InfoTab = Window:Tab({
+    Title = "DASBOARD",
+    Icon = "info"
+})
+
+InfoTab:Section({
+    Title = "👤 USER PROFILE"
+})
+
+InfoTab:Paragraph({
+    Title = "🎮 "..LocalPlayer.DisplayName,
+    Desc =
+    "👤 Username : "..LocalPlayer.Name..
+    "\n🆔 User ID : "..LocalPlayer.UserId..
+    "\n📅 Account Age : "..LocalPlayer.AccountAge.." Days"..
+    "\n💎 Rank : Premium User"..
+    "\n🟢 Status : Online"
+})
+InfoTab:Paragraph({
+    Title = "SYSTEM INFORMATION",
+    Desc =
+    "🔥 Version : V3\n"..
+    "⚡ Executor : "..identifyexecutor().."\n"..
+    "🛡️ Security : Active\n"..
+    "🎯 Hub Status : Working\n"..
+    "👑 Owner : SILENT EXPLOITS OFFIALS"
+})
+InfoTab:Paragraph({
+    Title = "📣INFORMATION",
+    Desc = "KALO ADA BUG SCRIPT YANG GABISA DI PAKAI/GABISA DI EXECUT SILAHKAN KLIK LINK SERVER DISCORD DIBAWAH UNTUK LAPORAN"
+})
+
+InfoTab:Button({
+    Title = "(   LINK SERVER DISCORD     )",
+    Desc = "Klik untuk copy link Discord",
+    Color = Color3.fromRGB(255, 255, 255),
+    Callback = function()
+        setclipboard("https://discord.gg/6K6uaGhvv")
+
+        WindUI:Notify({
+            Title = "COPIED",
+            Content = "Link Discord berhasil disalin",
+            Duration = 3
+        })
+    end
+})
+InfoTab:Button({
+    Title = "(   LINK DISCORD V2     )",
+    Desc = "Klik untuk copy link Discord",
+    Color = Color3.fromRGB(255, 255, 255),
+    Callback = function()
+        setclipboard("https://discord.gg/aJ3yFGD3M")
+
+        WindUI:Notify({
+            Title = "COPIED",
+            Content = "Link Discord berhasil disalin",
+            Duration = 3
+        })
+    end
+})
+
+--================= PLAYER =================
+local PlayerTab = Window:Tab({Title="PLAYER", Icon="user"})
+
+PlayerTab:Section({Title="⚡ MOVEMENT"})
+
+PlayerTab:Button({
+Title="SPEED 80",
+Desc="Lari lebih cepat",
+Callback=function()
+local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+if hum then hum.WalkSpeed = 80 end
+end
+})
+
+PlayerTab:Button({
+Title="SPEED 120",
+Desc="Super speed",
+Callback=function()
+local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+if hum then hum.WalkSpeed = 120 end
+end
+})
+
+PlayerTab:Button({
+Title="RESET SPEED",
+Desc="Balikin normal",
+Callback=function()
+local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+if hum then hum.WalkSpeed = 16 end
+end
+})
+
+PlayerTab:Button({
+Title="HIGH JUMP",
+Desc="Loncat lebih tinggi",
+Callback=function()
+local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+if hum then hum.JumpPower = 120 end
+end
+})
+
+PlayerTab:Button({
+Title="RESET JUMP",
+Desc="Normal jump",
+Callback=function()
+local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+if hum then hum.JumpPower = 50 end
+end
+})
+
+PlayerTab:Section({Title="🛡️ SURVIVAL"})
+
+PlayerTab:Button({
+Title="GOD MODE",
+Desc="Tidak bisa mati (basic)",
+Callback=function()
+local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+if hum then
+hum.MaxHealth = math.huge
+hum.Health = math.huge
+end
+end
+})
+
+PlayerTab:Button({
+Title="RESET HEALTH",
+Desc="Balikin HP normal",
+Callback=function()
+local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+if hum then
+hum.MaxHealth = 100
+hum.Health = 100
+end
+end
+})
+
+PlayerTab:Section({Title="👻 VISUAL CHARACTER"})
+
+PlayerTab:Button({
+Title="INVISIBLE",
+Desc="Karakter hilang",
+Callback=function()
+local char = game.Players.LocalPlayer.Character
+if char then
+for _,v in pairs(char:GetDescendants()) do
+if v:IsA("BasePart") then
+v.Transparency = 1
+end
+end
+end
+end
+})
+
+PlayerTab:Button({
+Title="RESET ",
+Desc="Balikin terlihat",
+Callback=function()
+local char = game.Players.LocalPlayer.Character
+if char then
+for _,v in pairs(char:GetDescendants()) do
+if v:IsA("BasePart") then
+v.Transparency = 0
+end
+end
+end
+end
+})
+
+PlayerTab:Section({Title="🎮 UTILITY"})
+
+PlayerTab:Button({
+Title="RESET CHARACTER",
+Desc="Respawn cepat",
+Callback=function()
+game.Players.LocalPlayer.Character:BreakJoints()
+end
+})
+
+PlayerTab:Button({
+Title="REJOIN SERVER",
+Desc="Masuk ulang server",
+Callback=function()
+game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+end
+})
+
+PlayerTab:Button({
+Title="SIT MODE",
+Desc="Duduk otomatis",
+Callback=function()
+local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+if hum then hum.Sit = true end
+end
+})
+
+--================= VISUAL =================
+local VisualTab = Window:Tab({Title="VISUAL", Icon="eye"})
+
+VisualTab:Section({Title="🌈 GRAPHIC"})
+
+VisualTab:Button({
+Title="FULLBRIGHT",
+Desc="Map jadi terang total",
+Callback=function()
+local Lighting = game:GetService("Lighting")
+Lighting.Brightness = 5
+Lighting.ClockTime = 12
+Lighting.GlobalShadows = false
+Lighting.Ambient = Color3.new(1,1,1)
+end
+})
+
+VisualTab:Button({
+Title="NO FOG",
+Desc="Hilangkan kabut",
+Callback=function()
+local Lighting = game:GetService("Lighting")
+Lighting.FogStart = 0
+Lighting.FogEnd = 999999
+end
+})
+
+VisualTab:Button({
+Title="MAX BRIGHTNESS",
+Desc="Brightness ultra terang",
+Callback=function()
+local Lighting = game:GetService("Lighting")
+Lighting.Brightness = 10
+Lighting.ExposureCompensation = 2
+end
+})
+
+VisualTab:Button({
+Title="TIME DAY",
+Desc="Paksa siang hari",
+Callback=function()
+local Lighting = game:GetService("Lighting")
+Lighting.ClockTime = 14
+end
+})
+
+VisualTab:Section({Title="👁️ CAMERA VISUAL"})
+
+VisualTab:Button({
+Title="FOV 120",
+Desc="Camera lebih luas",
+Callback=function()
+workspace.CurrentCamera.FieldOfView = 120
+end
+})
+
+VisualTab:Button({
+Title="FOV 90",
+Desc="Balanced view",
+Callback=function()
+workspace.CurrentCamera.FieldOfView = 90
+end
+})
+
+VisualTab:Button({
+Title="FOV 70 RESET",
+Desc="Normal view",
+Callback=function()
+workspace.CurrentCamera.FieldOfView = 70
+end
+})
+
+VisualTab:Section({Title="✨ EFFECTS"})
+
+VisualTab:Button({
+Title="REMOVE SHADOW",
+Desc="Hilangkan semua shadow",
+Callback=function()
+game:GetService("Lighting").GlobalShadows = false
+end
+})
+
+VisualTab:Button({
+Title="LOW GRAPHIC MODE",
+Desc="FPS boost visual low",
+Callback=function()
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ParticleEmitter") or v:IsA("Trail") then
+v.Enabled = false
+end
+end
+end
+})
+
+VisualTab:Button({
+Title="REMOVE DECALS",
+Desc="Hapus semua texture",
+Callback=function()
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("Decal") or v:IsA("Texture") then
+v:Destroy()
+end
+end
+end
+})
+
+VisualTab:Section({Title="🎮 CHARACTER VISUAL"})
+
+VisualTab:Button({
+Title="INVISIBLE FULL",
+Desc="Karakter hilang total",
+Callback=function()
+local char = game.Players.LocalPlayer.Character
+if char then
+for _,v in pairs(char:GetDescendants()) do
+if v:IsA("BasePart") then
+v.Transparency = 1
+end
+end
+end
+end
+})
+
+VisualTab:Button({
+Title="RESET",
+Desc="Balikin karakter normal",
+Callback=function()
+local char = game.Players.LocalPlayer.Character
+if char then
+for _,v in pairs(char:GetDescendants()) do
+if v:IsA("BasePart") then
+v.Transparency = 0
+v.CanCollide = true
+end
+end
+end
+end
+})
+
+VisualTab:Section({Title="💡 EXTRA VISUAL"})
+
+VisualTab:Button({
+Title="CLEAR MAP LAG",
+Desc="Hilangkan efek berat",
+Callback=function()
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Fire") then
+v.Enabled = false
+end
+end
+end
+})
+
+VisualTab:Button({
+Title="RAINBOW LIGHT",
+Desc="Cahaya berubah warna",
+Callback=function()
+task.spawn(function()
+local Lighting = game:GetService("Lighting")
+while true do
+for i = 0,1,0.05 do
+Lighting.Ambient = Color3.fromHSV(i,1,1)
+task.wait(0.1)
+end
+end
+end)
+end
+})
+
+
+-- ================= TAB: EXPLOITS =================
+local JuleTab = Window:Tab({Title="EXPLOITS", Icon="skull"})
+
+JuleTab:Button({
+Title="🔍SCAN BACKDOOR",
+Desc="Mendeteksi RemoteEvent mencurigakan dan celah backdoor yang tersedia",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/Remote-Event_Backdoor/refs/heads/main/Remote_SilentScript"))()
+end
+})
+
+JuleTab:Button({
+Title="💰FAKE DONATE",
+Desc="Menampilkan efek donasi visual tanpa transaksi asli",
+Callback=function()
+loadstring(game:HttpGet("https://pastefy.app/4iqtSMB6/raw"))()
+end
+})
+
+JuleTab:Button({
+Title="💬SPAMMING CHAT",
+Desc="Spamm Chat",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/SpamChat/refs/heads/main/SilentSpam"))()
+end
+})
+
+JuleTab:Button({
+Title="👤FLING PLAYER",
+Desc="Mendorong atau melempar player menggunakan physics force",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/FlingPlayer/refs/heads/main/SILENT-GGWP"))()
+end
+})
+
+JuleTab:Button({
+Title="🌪️SUPER RING PARTS",
+Desc="Mengontrol part di sekitar menjadi lingkaran berputar",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/SuperRingParts/refs/heads/main/SILENT EXPLOITS"))()
+end
+})
+
+JuleTab:Button({
+Title="🧲BRING PARTS",
+Desc="Menarik part yang tidak terkunci ke posisi karakter",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/freeAcces9999x/refs/heads/main/SILENTEXPLOITS9999"))()
+end
+})
+
+JuleTab:Button({
+Title="🔥LASER MAP",
+Desc="Laser Work ( All Game )",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/Laser_Glitch100-/refs/heads/main/Bysilentcrak"))()
+end
+})
+
+JuleTab:Button({
+Title="🕵️ESP PLAYER ",
+Desc="Menampilkan lokasi player melalui dinding dan jarak jauh",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/Bringpart/refs/heads/main/Esp-PlayerHub"))()
+end
+})
+
+JuleTab:Button({
+Title="🎯AIMBOT",
+Desc="Membantu mengunci target secara otomatis",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/AIMLOCK-1x1xAIMBOT/refs/heads/main/silentganteng"))()
+end
+})
+
+JuleTab:Button({
+Title="🕊FLY PLAYER",
+Desc="Free fly movement system",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/Fly-GuiV2/refs/heads/main/silentexploitshub"))()
+end
+})
+
+local SettingTab = Window:Tab({Title="SETTING", Icon="zap"})
+
+-- 🟢 ANTI AFK
+SettingTab:Toggle({
+Title = "ANTI AFK",
+Desc = "Anti kick saat idle",
+Callback = function(state)
+if state then
+for _,v in pairs(getconnections(LocalPlayer.Idled)) do
+v:Disable()
+end
+WindUI:Notify({
+Title = "SETTING",
+Content = "ANTI AFK AKTIF",
+Duration = 3
+})
+end
+end
+})
+
+-- 🔄 RESET CHARACTER
+SettingTab:Button({
+Title = "RESET CHARACTER",
+Desc = "Respawn cepat",
+Callback = function()
+if LocalPlayer.Character then
+LocalPlayer.Character:BreakJoints()
+end
+end
+})
+
+-- 🔁 REJOIN SERVER
+SettingTab:Button({
+Title = "REJOIN SERVER",
+Desc = "Masuk ulang server",
+Callback = function()
+game:GetService("TeleportService"):Teleport(game.PlaceId, LocalPlayer)
+end
+})
+
+-- ⚙️ SAFE MODE
+SettingTab:Button({
+Title = "SAFE MODE",
+Desc = "Reset semua efek ke normal",
+Callback = function()
+local char = LocalPlayer.Character
+if char then
+local hum = char:FindFirstChildOfClass("Humanoid")
+if hum then
+hum.WalkSpeed = 16
+hum.JumpPower = 50
+hum.Health = 100
+hum.MaxHealth = 100
+end
+
+for _,v in pairs(char:GetDescendants()) do
+if v:IsA("BasePart") then
+v.Transparency = 0
+v.CanCollide = true
+end
+end
+end
+
+workspace.CurrentCamera.FieldOfView = 70
+game:GetService("Lighting").Brightness = 2
+end
+})
+
+local ExtraTab = Window:Tab({Title="EXTRA", Icon="package"})
+
+-- 🚶 ANIMATION
+ExtraTab:Button({
+Title = "🕺ANIMATION ",
+Desc = "Animasi karakter",
+Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/Animationz/refs/heads/main/SILENTZZTEAM"))()
+end
+})
+
+-- 🕺 EMOTE
+ExtraTab:Button({
+Title = "🕺EMOTE KARAKTER",
+Desc = "Emote karakter",
+Callback = function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-7yd7-I-Emote-Script-48024"))()
+end
+})
+
+-- 👥 AVATAR COPY
+ExtraTab:Button({
+Title = "👤COPY AVATAR",
+Desc = "Copy avatar player",
+Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Nearastro/Nearastro/refs/heads/main/00CopyAvaFE.lua"))()
+end
+})
+
+-- 🎵 MUSIC PLAYER
+ExtraTab:Button({
+Title = "🎵MUSIC PLAYER",
+Desc = "Play music by ID",
+Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/Music-Player/refs/heads/main/silentexploit"))()
+end
+})
+
+-- ✈️ FLY
+ExtraTab:Button({
+Title = "🕊FLY GUI",
+Desc = "Terbang bebas",
+Callback = function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fly-V3-50586"))()
+end
+})
+
+-- 📱 SHIFTLOCK
+ExtraTab:Button({
+Title = "🔒SHIFTLOCK MOBILE",
+Desc = "Shiftlock kontrol",
+Callback = function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Mobile-Shiftlock-217580"))()
+end
+})
+
+ExtraTab:Button({
+Title = "🦘JUMP BUTTON ",
+Desc = "Setting Jump",
+Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/Silent/refs/heads/main/JumpButon"))()
+end
+})
+
+-- ================= TAB: ANIMATION =================
+local VisualTab = Window:Tab({Title="OTHERS", Icon="move"})
+
+VisualTab:Button({
+Title="🌌LASER SKYBOX",
+Desc="Mengubah langit menjadi tema laser neon yang keren",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/Skybox/refs/heads/main/SilentExploits"))()
+end
+})
+
+VisualTab:Button({
+Title="💃ANNIMATION V2",
+Desc="Koleksi animasi premium untuk karakter Roblox",
+Callback=function()
+loadstring(game:HttpGet("https://github.com/silentteam-87/SILENTEXPLOITS9/blob/main/ANNIMATIONV2"))()
+end
+})
+
+VisualTab:Button({
+Title = "👑TITLE VISUAL",
+Desc="Hanya Title Visual Tidak Bisa Dilihat Player Lain",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/SilentTitle/refs/heads/main/Exploiter"))()
+end
+})
+
+VisualTab:Button({
+Title="🎯HITBOX",
+Desc="Memperbesar hitbox target agar lebih mudah dikenai",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/HitboxEsp/refs/heads/main/Hitbox"))()
+end
+})
+
+VisualTab:Button({
+Title="🕺EMOTE ",
+Desc="Animasi karakter keren & smooth",
+Callback=function()
+loadstring(game:HttpGet("https://fayintz.my.id/api/loader/FE-Animation"))()
+end
+})
+
+VisualTab:Button({
+Title="🏃ANNIMASI ",
+Desc="Animasi karakter keren & smooth",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FayintXhub/Animasi-Emote/refs/heads/main/No-Visual"))()
+end
+})
+VisualTab:Button({
+Title=" 👥COPY AVATAR",
+Desc="Copy Avatar Chatalog ",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Nearastro/Nearastro/refs/heads/main/00CopyAvaFE.lua"))()
+end
+})
+
+VisualTab:Button({
+Title="⚡TAP SIMULATOR",
+Desc="Simulatot Games ",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/TAP-SIMULATOR1x1x/refs/heads/main/silenthub.Myid"))()
+end
+})
+
+VisualTab:Button({
+Title="🎯BLOOD STRIKE",
+Desc="BLOOD STRIKE AIMBOT SNIPER",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentteam-87/BloodStrike-100Sniper/refs/heads/main/silenthub.myid"))()
+end
+})
+
+VisualTab:Button({
+Title="💀VD",
+Desc="Violence Distrik",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TexRBLX/Roblox-stuff/refs/heads/main/violence-district/vd_rewrite.lua"))()
+end
+})
+-- ================= TAB: SERVER =================
+local ServerTab = Window:Tab({Title="SERVER", Icon="server"})
+
+
+-- Tampilkan info server
+local serverInfo = ServerTab:Paragraph({
+    Title = "SERVER ACTIVE...",
+    Desc = "Mengambil data server..."
+})
+
+task.spawn(function()
+    while task.wait(2) do
+        local players = #game.Players:GetPlayers()
+        local max = game.Players.MaxPlayers
+        local jobId = game.JobId
+        serverInfo:SetDesc("Players: "..players.."/"..max.."\nJob ID: "..jobId)
+    end
+end)
+
+
+-- Rejoin Server
+ServerTab:Button({
+    Title = "REJOIN SERVER",
+    Desc = "Masuk ulang ke server yang sama",
+    Callback = function()
+        game:GetService("TeleportService"):Teleport(game.PlaceId, LocalPlayer)
+        WindUI:Notify({Title="REJOIN", Content="Masuk ulang ke server...", Duration=3})
+    end
+})
+ServerTab:Button({
+    Title = "FREE CAM",
+    Desc = "Shift+P buat toggle. WASD gerak, Scroll zoom",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Free%20Cam"))()
+        WindUI:Notify({Title="FREE CAM", Content="Aktif! Tekan Shift+P", Duration=4})
+    end
+})
+ServerTab:Button({
+Title=" FPS BOOST",
+Desc="Mengurangi Efek Map Berat Jadi Ringan",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/FpsBoost/refs/heads/main/FpsBoostPing"))()
+    end
+})
+
+ServerTab:Button({
+Title="TP PLAYER",
+Desc="Teleport Ke Player Laij",
+Callback=function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/silentscript1/Teleport-Player/refs/heads/main/Exploiter"))()
+    end
+})
+-- ================= SCRIPT =================
+local ScriptTab = Window:Tab({Title=" BRAIN", Icon="brain"})
+
+ScriptTab:Button({
+Title = "🧠 SILENT GRAB V3",
+Desc = "Mengambil / grab item atau player secara otomatis dengan sistem terbaru V3",
+Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/YsPPEvsG/raw"))()
+end
+})
+
+ScriptTab:Button({
+Title = " SPEED",
+Desc = "Menambahkan kecepatan karakter secara instan speed boost SilentHub",
+Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/eOmavT8X/raw"))()
+end
+})
+
+ScriptTab:Button({
+Title = "SEMI TP ",
+Desc = "Teleport setengah otomatis semi TP ke lokasi tertentu, versi sudah diperbaiki",
+Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/BcpDOeoS/raw"))()
+end
+})
+
+ScriptTab:Button({
+Title = "AP GIFTER ",
+Desc = "Menampilkan efek visual gift  donate hanya tampilan, bukan real",
+Callback = function()
+loadstring(game:HttpGet("https://iyfvpnjrghsownkpazec.supabase.co/functions/v1/get-paste?slug=vtZaWUTa"))()
+end
+})
+
+ScriptTab:Button({
+Title = "SPAWNER ITEM",
+Desc = "Spawner item otomatis dari SilentHub tergantung game",
+Callback = function()
+loadstring(game:HttpGet("https://gdsbolunevswwcfggllh.supabase.co/functions/v1/raw-silenthub?id=bi7w03p3k6fd"))()
+end
+})
+
+ScriptTab:Button({
+Title = "DUELS TP",
+Desc = "Teleport langsung ke area duel arena PvP secara cepat",
+Callback = function()
+loadstring(game:HttpGet("https://gdsbolunevswwcfggllh.supabase.co/functions/v1/raw-silenthub?id=z8hxesmb6dab"))()
+end
+})
